@@ -1,0 +1,14 @@
+/*
+Celine Leano
+1/16/2019
+328/dating/styles.css
+Styling for dating site
+ */
+
+div.container {
+    padding: 15px;
+}
+
+button.create {
+    font-size: 16px;
+}
