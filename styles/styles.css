@@ -6,9 +6,9 @@ Styling for dating site
  */
 
 div.container {
-    padding: 15px;
+    padding: 20px;
 }
 
-button.create {
-    font-size: 16px;
+img {
+    box-shadow: 5px 8px 18px #888888;
 }
