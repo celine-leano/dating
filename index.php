@@ -1,4 +1,10 @@
 <?php
+/**
+ * Celine Leano
+ * 1/16/2019
+ * 328/dating/index.php
+ * Page that uses fat-free routing
+ */
 // turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -16,6 +22,18 @@ $f3->set('DEBUG', 3);
 $f3->route('GET /', function() {
     $view = new View();
     echo $view->render('views/home.html');
+});
+
+// define a route to sign up (personal info)
+$f3->route('GET /sign-up', function() {
+    $template = new Template();
+    echo $template->render('views/info.html');
+});
+
+// define a route to sign up (profile)
+$f3->route('GET /sign-up2', function() {
+    $template = new Template();
+    echo $template->render('views/profile.html');
 });
 
 // run fat free

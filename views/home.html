@@ -1,3 +1,10 @@
+<!--
+Celine Leano
+1/17/2019
+328/dating/views/home.html
+Homepage view
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,10 +19,20 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">My Dating Website</a>
+            </div>
+        </div>
+    </nav> <!-- end navbar -->
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-6">
-                <h1 class="text-center">My Dating Site</h1>
+        <div class="row my-auto">
+            <div class="m-auto col-6 col-sm-6">
+                <h1 class="text-center">My Dating Website</h1>
                 <p>
                     Welcome to the web's most successful dating website. At <b>My Dating Website</b>
                     you'll meet another like minded individual. We have the highest success rate
@@ -41,12 +58,11 @@
                 <hr>
 
                 <div class="text-center">
-                    <button id="create" type="button" class="btn btn-primary btn-lg">Create a Profile!</button>
-
+                    <a href="sign-up" class="btn btn-primary btn-lg">Create a Profile!</a>
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6">
+            <div class="d-none-sm d-md-block col-6 col-sm-6">
                 <img src="images/couple.jpeg" alt="couple"  class="img-rounded img-responsive">
             </div>
         </div>
