@@ -25,15 +25,27 @@ $f3->route('GET /', function() {
 });
 
 // define a route to sign up (personal info)
-$f3->route('GET /sign-up', function() {
+$f3->route('GET /sign-up/info', function() {
     $template = new Template();
     echo $template->render('views/info.html');
 });
 
 // define a route to sign up (profile)
-$f3->route('GET /sign-up2', function() {
+$f3->route('GET /sign-up/profile', function() {
     $template = new Template();
     echo $template->render('views/profile.html');
+});
+
+// define a route to sign up (interests)
+$f3->route('GET /sign-up/interests', function() {
+    $template = new Template();
+    echo $template->render('views/interests.html');
+});
+
+// define a route to sign up (summary)
+$f3->route('GET /sign-up/summary', function() {
+    $template = new Template();
+    echo $template->render('views/summary.html');
 });
 
 // run fat free

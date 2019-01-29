@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create an Account</title>
+    <title>Personal Information - Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -46,13 +46,9 @@
                         <input type="number" maxlength=100 class="form-control" name="age">
                     </div>
                     <div class="form-group row">
-                        <label>Gender</label>
-                        <div class="row">
-                            <input type="radio" name="gender" value="male">&nbsp;Male
-                        </div>
-                        <div class="row">
-                            <input type="radio" name="gender" value="female">&nbsp;Female
-                        </div>
+                        <label>Gender</label><br>
+                        <label class="radio-inline"><input type="radio" name="gender">Male</label>
+                        <label class="radio-inline"><input type="radio" name="gender">Female</label>
                     </div>
                     <div class="form-group row">
                         <label>Phone Number</label>
@@ -63,17 +59,15 @@
 
             <div class="col-lg-4">
                 <div class="col-md-12">
-                    <div class="card bg-light mb-3">
+                    <div class="card bg-light">
                         <b>Note:</b> All information is protected by our <a href="#">privacy policy</a>. Profile information can only be viewed by others with your permission.
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row clearfix">
-            <span class="float-right">
-                <a href="sign-up2" class="btn btn-primary btn-md">Next ></a>
-            </span>
+        <div class="row text-right">
+            <a href="profile" class="btn btn-primary btn-md">Next ></a>
         </div>
     </div>
 </body>
