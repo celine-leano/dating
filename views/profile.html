@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile - Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+<!-- navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">My Dating Website</a>
+        </div>
+    </div>
+</nav> <!-- end navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-left">Profile</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email">
+                </div>
+                <div class="form-group row">
+                    <label>State</label>
+                    <select class="form-control" name="state">
+                        <option>California</option>
+                        <option>Oregon</option>
+                        <option>Washington</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <label>Seeking</label><br>
+                    <label class="radio-inline"><input type="radio" name="seeking" checked>Male</label>
+                    <label class="radio-inline"><input type="radio" name="seeking">Female</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Biography</label>
+                    <textarea class="form-control" rows="5" placeholder="Tell us about yourself..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix">
+            <span class="float-right">
+                <a href="sign-up2" class="btn btn-primary btn-md">Next ></a>
+            </span>
+    </div>
+</div>
+</body>
+</html>
