@@ -18,6 +18,12 @@ $f3 = Base::instance();
 // turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+// array to hold valid genders
+$f3->set("genders", array("Male", "Female"));
+
+// validation
+require_once("model/info-validation.php");
+
 // define a default route
 $f3->route('GET /', function() {
     $view = new View();
@@ -25,7 +31,41 @@ $f3->route('GET /', function() {
 });
 
 // define a route to sign up (personal info)
-$f3->route('GET /sign-up/info', function() {
+$f3->route('GET|POST /sign-up/info', function($f3) {
+    session_start();
+
+    // always start with empty session here
+    $_SESSION = array();
+
+    // flag
+    $isValid = true;
+
+    // validate first name
+    if (isset($_POST['fname'])) {
+        $fname = $_POST['fname'];
+        if (validName($fname)) {
+            $_SESSION['fname'] = $fname;
+        } else {
+            $f3->set("errors['fname']", "Please enter your name");
+            $isValid = false;
+        }
+    }
+
+    // validate gender
+    if (isset($_POST['gender'])) {
+        $gender = $_POST['gender'];
+        if (validGender($gender)) {
+            $_SESSION['gender'] = $gender;
+        } else {
+            $f3->set("errors['gender']", "Please select a gender");
+            $isValid = false;
+        }
+    }
+
+    if ($isValid) {
+        // do this
+    }
+
     $template = new Template();
     echo $template->render('views/info.html');
 });

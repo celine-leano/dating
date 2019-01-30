@@ -1,3 +1,10 @@
+<!--
+Celine Leano
+1/29/2019
+328/dating/views/info.html
+Sign-Up (Personal Info)
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,29 +20,36 @@
 </head>
 <body>
 
-    <!-- navbar -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">My Dating Website</a>
-            </div>
+<!-- navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../">My Dating Website</a>
         </div>
-    </nav> <!-- end navbar -->
+    </div>
+</nav> <!-- end navbar -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="text-left">Personal Information</h1>
-                <hr>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-left">Personal Information</h1>
+            <hr>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="col-md-12">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="col-md-12">
+                <form method="post" action="#">
+
                     <div class="form-group row">
                         <label>First Name</label>
                         <input type="text" class="form-control" name="fname">
+
+                        <!-- validation error message -->
+                        <check if="{{ isset(@errors['fname']) }}">
+                            <p>{{ @errors['fname'] }}</p>
+                        </check>
                     </div>
                     <div class="form-group row">
                         <label>Last Name</label>
@@ -47,28 +61,40 @@
                     </div>
                     <div class="form-group row">
                         <label>Gender</label><br>
-                        <label class="radio-inline"><input type="radio" name="gender">Male</label>
-                        <label class="radio-inline"><input type="radio" name="gender">Female</label>
+                        <repeat group="{{ @genders }}" key="{{ @genderKey }}" value="{{ @genderValue }}">
+                            <label class="radio-inline"><input type="radio" name="gender"
+                                                               value=" {{ @POST['gender']}}">
+                                {{ @genderValue }}
+                            </label>
+                        </repeat>
+
+                        <!-- validation error message -->
+                        <check if="{{ isset(@errors['gender']) }}">
+                            <p>{{ @errors['gender'] }}</p>
+                        </check>
                     </div>
                     <div class="form-group row">
                         <label>Phone Number</label>
                         <input type="tel" class="form-control" name="phone">
                     </div>
-                </div>
-            </div>
 
-            <div class="col-lg-4">
-                <div class="col-md-12">
-                    <div class="card bg-light">
-                        <b>Note:</b> All information is protected by our <a href="#">privacy policy</a>. Profile information can only be viewed by others with your permission.
+                    <div class="row text-right">
+                        <button type="submit" class="btn btn-primary btn-md">Next ></button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
-        <div class="row text-right">
-            <a href="profile" class="btn btn-primary btn-md">Next ></a>
+        <div class="col-lg-4">
+            <div class="col-md-12">
+                <div class="card bg-light">
+                    <b>Note:</b> All information is protected by our <a href="#">privacy policy</a>.
+                    Profile information can only be viewed by others with your permission.
+                </div>
+            </div>
         </div>
     </div>
+    </form>
+</div>
 </body>
 </html>
