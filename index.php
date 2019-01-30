@@ -19,7 +19,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 // array to hold valid genders
-$f3->set("genders", array("Male", "Female"));
+$f3->set("genders", array("Male"=>"male", "Female"=>"female"));
 
 // validation
 require_once("model/info-validation.php");
@@ -63,9 +63,21 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
             }
         }
 
+        // validate age
+        if (isset($_POST['age'])) {
+            $age = $_POST['age'];
+            if (validAge($age)) {
+                $_SESSION['age'] = $age;
+            } else {
+                $f3->set("errors['age']", "Please enter your age");
+                $isValid = false;
+            }
+        }
+
         // validate gender
         if (isset($_POST['gender'])) {
             $gender = $_POST['gender'];
+            print_r($_POST);
             if (validGender($gender)) {
                 $_SESSION['gender'] = $gender;
             } else {

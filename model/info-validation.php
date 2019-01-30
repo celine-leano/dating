@@ -8,15 +8,15 @@
 
 // first name validation
 function validName($name) {
-    return ((!empty($name)) && ctype_alpha($name));
+    return (!empty($name)) && ctype_alpha($name);
 }
 
 // age validation
 function validAge($age) {
-    if ($age < 18 || $age > 100) { return false; }
+    return is_numeric($age);
 }
 
 // gender validation
 function validGender($gender) {
-    return ($gender == "male" || $gender == "female");
+    return (!empty($gender)) && ($gender == "male" || $gender == "female");
 }
