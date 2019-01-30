@@ -51,10 +51,17 @@ Sign-Up (Personal Info)
                             <p>{{ @errors['fname'] }}</p>
                         </check>
                     </div>
+
                     <div class="form-group row">
                         <label>Last Name</label>
                         <input type="text" class="form-control" name="lname">
+
+                        <!-- validation error message -->
+                        <check if="{{ isset(@errors['lname']) }}">
+                            <p>{{ @errors['lname'] }}</p>
+                        </check>
                     </div>
+
                     <div class="form-group row">
                         <label>Age</label>
                         <input type="number" maxlength=100 class="form-control" name="age">

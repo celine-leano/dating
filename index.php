@@ -41,29 +41,42 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
     $isValid = true;
 
     // validate first name
-    if (isset($_POST['fname'])) {
-        $fname = $_POST['fname'];
-        if (validName($fname)) {
-            $_SESSION['fname'] = $fname;
-        } else {
-            $f3->set("errors['fname']", "Please enter your name");
-            $isValid = false;
+    if (!empty($_POST)) {
+        if (isset($_POST['fname'])) {
+            $fname = $_POST['fname'];
+            if (validName($fname)) {
+                $_SESSION['fname'] = $fname;
+            } else {
+                $f3->set("errors['fname']", "Please enter your first name");
+                $isValid = false;
+            }
         }
-    }
 
-    // validate gender
-    if (isset($_POST['gender'])) {
-        $gender = $_POST['gender'];
-        if (validGender($gender)) {
-            $_SESSION['gender'] = $gender;
-        } else {
-            $f3->set("errors['gender']", "Please select a gender");
-            $isValid = false;
+        // validate last name
+        if (isset($_POST['lname'])) {
+            $lname = $_POST['lname'];
+            if (validName($lname)) {
+                $_SESSION['lname'] = $lname;
+            } else {
+                $f3->set("errors['lname']", "Please enter your last name");
+                $isValid = false;
+            }
         }
-    }
 
-    if ($isValid) {
-        // do this
+        // validate gender
+        if (isset($_POST['gender'])) {
+            $gender = $_POST['gender'];
+            if (validGender($gender)) {
+                $_SESSION['gender'] = $gender;
+            } else {
+                $f3->set("errors['gender']", "Please select a gender");
+                $isValid = false;
+            }
+        }
+
+        if ($isValid) {
+            $f3->reroute("/sign-up/profile");
+        }
     }
 
     $template = new Template();
@@ -71,7 +84,9 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
 });
 
 // define a route to sign up (profile)
-$f3->route('GET /sign-up/profile', function() {
+$f3->route('GET|POST /sign-up/profile', function() {
+    session_start();
+
     $template = new Template();
     echo $template->render('views/profile.html');
 });
