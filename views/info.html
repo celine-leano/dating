@@ -54,7 +54,7 @@ Sign-Up (Personal Info)
 
                     <div class="form-group row">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" name="lname">
+                        <input type="text" class="form-control" name="lname" value="{{ @POST['lname'] }}">
 
                         <!-- validation error message -->
                         <check if="{{ isset(@errors['lname']) }}">
