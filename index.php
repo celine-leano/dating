@@ -77,7 +77,6 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
         // validate gender
         if (isset($_POST['gender'])) {
             $gender = $_POST['gender'];
-            print_r($_POST);
             if (validGender($gender)) {
                 $_SESSION['gender'] = $gender;
             } else {
@@ -86,9 +85,22 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
             }
         }
 
+        // validate phone number
+        if (isset($_POST['phone'])) {
+            $phone = $_POST['phone'];
+            if (validPhone($phone)) {
+                $_SESSION['phone'] = $phone;
+            } else {
+                $f3->set("errors['phone']", "Please enter full 10-digit number");
+                $isValid = false;
+            }
+        }
+
         if ($isValid) {
             $f3->reroute("/sign-up/profile");
         }
+
+        print_r($_POST);
     }
 
     $template = new Template();

@@ -75,7 +75,7 @@ Sign-Up (Personal Info)
                     <div class="form-group row">
                         <label>Gender</label><br>
                         <repeat group="{{ @genders }}" key="{{ @genderKey }}" value="{{ @genderValue }}">
-                            <label class="radio-inline"><input type="radio" name="gender" value=" {{ @genderValue}}">
+                            <label class="radio-inline"><input type="radio" name="gender" value=" {{ @genderValue }}">
                                 {{ @genderKey }}
                             </label>
                         </repeat>
@@ -88,6 +88,11 @@ Sign-Up (Personal Info)
                     <div class="form-group row">
                         <label>Phone Number</label>
                         <input type="tel" class="form-control" name="phone">
+
+                        <!-- validation error message -->
+                        <check if="{{ isset(@errors['phone']) }}">
+                            <p>{{ @errors['phone'] }}</p>
+                        </check>
                     </div>
 
                     <div class="row text-right">

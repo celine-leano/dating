@@ -18,5 +18,22 @@ function validAge($age) {
 
 // gender validation
 function validGender($gender) {
-    return (!empty($gender)) && ($gender == "male" || $gender == "female");
+    global $f3;
+    if (!in_array($gender, $f3->get('genders'))) {
+        echo "$gender";
+    }
+}
+
+// phone number validation
+function validPhone($phone) {
+    // strip phone to just numbers if user uses parentheses, dashes,
+    // or spaces
+    $phone = str_replace("(", "", $phone);
+    $phone = str_replace(")", "", $phone);
+    $phone = str_replace("-", "", $phone);
+    $phone = str_replace(" ", "", $phone);
+
+    echo $phone;
+
+    return (is_numeric($phone)) && (strlen($phone) == 10);
 }
