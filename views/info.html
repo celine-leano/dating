@@ -64,7 +64,7 @@ Sign-Up (Personal Info)
 
                     <div class="form-group row">
                         <label>Age</label>
-                        <input type="number" maxlength=3 class="form-control" name="age">
+                        <input type="number" maxlength=3 class="form-control" name="age" value="{{ @POST['age'] }}">
 
                         <!-- validation error message -->
                         <check if="{{ isset(@errors['age']) }}">
