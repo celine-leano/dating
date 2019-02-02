@@ -19,10 +19,12 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 
 // array for indoor interests
-$f3->set("indoor", array(""));
+$f3->set("indoor", array("tv", "movies", "cooking", "boardgames",
+    "puzzles", "reading", "playing cards", "video games"));
 
 // array for outdoor interests
-$f3->set("outdoor", array(""));
+$f3->set("outdoor", array("hiking", "biking", "swimming", "collecting",
+    "walking", "climbing"));
 
 // validation
 require_once("model/signup-validation.php");
@@ -80,6 +82,11 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
             }
         }
 
+        // saves gender if set
+        if (isset($_POST['gender'])) {
+            $_SESSION['gender'] = $_POST['gender'];
+        }
+
         // validate phone number
         if (isset($_POST['phone'])) {
             $phone = $_POST['phone'];
@@ -103,6 +110,8 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
 // define a route to sign up (profile)
 $f3->route('GET|POST /sign-up/profile', function($f3) {
     session_start();
+
+    $f3->set("title", "Profile - Sign Up");
 
     $isValid = true;
 
@@ -128,6 +137,20 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
             }
         }
 
+        if (isset($_POST['seeking'])) {
+            $seeking = $_POST['seeking'];
+            if (!empty($seeking)) {
+                $_SESSION['seeking'] = $seeking;
+            }
+        }
+
+        if (isset($_POST['bio'])) {
+            $bio = $_POST['bio'];
+            if (!empty($bio)) {
+                $_SESSION['bio'] = $bio;
+            }
+        }
+
         if ($isValid) {
             $f3->reroute("/sign-up/interests");
         }
@@ -138,19 +161,40 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
 });
 
 // define a route to sign up (interests)
-$f3->route('GET /sign-up/interests', function() {
+$f3->route('GET|POST /sign-up/interests', function($f3) {
     session_start();
 
-    if (isset($_POST['submit'])) {
+    $f3->set("title", "Summary - Sign Up");
+
+    if (!empty($_POST)) {
         // check if checkboxes are checked
+        if (!empty($_POST['indoorInterests'])) {
+            // check if valid
+            $indoorInterests = $_POST['indoorInterests'];
 
-        // if valid
+            $_SESSION['indoor'] = array();
+            foreach ($indoorInterests as $interest) {
+                if (validIndoor($interest)) {
+                    array_push($_SESSION['indoor'], $interest);
+                } else {
+                    $f3->reroute("home");
+                }
+            }
+        }
 
-            // go to next
+        if (!empty($_POST['outdoorInterests'])) {
+            $outdoorInterests = $_POST['outdoorInterests'];
 
-        // else
-
-            // stay on page
+            $_SESSION['outdoor'] = array();
+            foreach ($outdoorInterests as $interest) {
+                if (validOutdoor($interest)) {
+                    array_push($_SESSION['outdoor'], $interest);
+                } else {
+                    $f3->reroute("home");
+                }
+            }
+        }
+        $f3->reroute("summary");
     }
 
     $template = new Template();
@@ -158,8 +202,11 @@ $f3->route('GET /sign-up/interests', function() {
 });
 
 // define a route to sign up (summary)
-$f3->route('GET /sign-up/summary', function() {
+$f3->route('GET /sign-up/summary', function($f3) {
     session_start();
+
+    $f3->set("indoorString", implode(" ", $_SESSION['indoor']));
+    $f3->set("outdoorString", implode(" ", $_SESSION['outdoor']));
 
     $template = new Template();
     echo $template->render('views/summary.html');

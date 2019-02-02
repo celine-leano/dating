@@ -4,30 +4,10 @@ Celine Leano
 328/dating/views/info.html
 Sign-Up (Personal Info)
 -->
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Personal Information - Sign Up</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="styles/styles.css">
-</head>
+<include href="views/head.html"></include>
 <body>
 
-<!-- navbar -->
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="../">My Dating Website</a>
-        </div>
-    </div>
-</nav> <!-- end navbar -->
+<include href="views/navbar.html"></include>
 
 <div class="container">
     <div class="row">
@@ -45,10 +25,9 @@ Sign-Up (Personal Info)
                     <div class="form-group row">
                         <label>First Name</label>
                         <input type="text" class="form-control" name="fname" value="{{ @POST['fname'] }}">
-
                         <!-- validation error message -->
                         <check if="{{ isset(@errors['fname']) }}">
-                            <p>{{ @errors['fname'] }}</p>
+                            <span>{{ @errors['fname'] }}</span>
                         </check>
                     </div>
 
@@ -58,7 +37,7 @@ Sign-Up (Personal Info)
 
                         <!-- validation error message -->
                         <check if="{{ isset(@errors['lname']) }}">
-                            <p>{{ @errors['lname'] }}</p>
+                            <span>{{ @errors['lname'] }}</span>
                         </check>
                     </div>
 
@@ -68,34 +47,27 @@ Sign-Up (Personal Info)
 
                         <!-- validation error message -->
                         <check if="{{ isset(@errors['age']) }}">
-                            <p>{{ @errors['age'] }}</p>
+                            <span>{{ @errors['age'] }}</span>
                         </check>
                     </div>
 
                     <div class="form-group row">
                         <label>Gender</label><br>
                         <label class="radio-inline">
-                            <input type="radio" name="gender" value="male">
-                            Male
+                            <input type="radio" name="gender" value="male">Male
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="gender" value="female">
-                            Female
+                            <input type="radio" name="gender" value="female">Female
                         </label>
-                        </repeat>
-
-                        <!-- validation error message -->
-                        <check if="{{ isset(@errors['gender']) }}">
-                            <p>{{ @errors['gender'] }}</p>
-                        </check>
                     </div>
+
                     <div class="form-group row">
                         <label>Phone Number</label>
                         <input type="tel" class="form-control" name="phone" value="{{ @POST['phone'] }}">
 
                         <!-- validation error message -->
                         <check if="{{ isset(@errors['phone']) }}">
-                            <p>{{ @errors['phone'] }}</p>
+                            <span>{{ @errors['phone'] }}</span>
                         </check>
                     </div>
 
@@ -115,7 +87,6 @@ Sign-Up (Personal Info)
             </div>
         </div>
     </div>
-    </form>
 </div>
 </body>
 </html>
