@@ -57,6 +57,11 @@ Sign-Up Profile
                             <option>Oregon</option>
                             <option>Washington</option>
                         </select>
+
+                        <!-- validation error message -->
+                        <check if="{{ isset(@errors['state']) }}">
+                            <span>{{ @errors['state'] }}</span>
+                        </check>
                     </div>
                     <div class="form-group row">
                         <label>Seeking</label><br>

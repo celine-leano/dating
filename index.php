@@ -118,6 +118,16 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
             }
         }
 
+        if (isset($_POST['state'])) {
+            $state = $_POST['state'];
+            if ($state != "- Select -") {
+                $_SESSION['state'] = $state;
+            } else {
+                $f3->set("errors['state']", "Please select a state");
+                $isValid = false;
+            }
+        }
+
         if ($isValid) {
             $f3->reroute("/sign-up/interests");
         }
