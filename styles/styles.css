@@ -8,3 +8,7 @@ Styling for dating site
 img {
     box-shadow: 5px 8px 18px #888888;
 }
+
+span {
+    color: red;
+}

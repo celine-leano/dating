@@ -18,21 +18,27 @@ $f3 = Base::instance();
 // turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-// array to hold valid genders
-$f3->set("genders", array("Male"=>"male", "Female"=>"female"));
+// array for indoor interests
+$f3->set("indoor", array(""));
+
+// array for outdoor interests
+$f3->set("outdoor", array(""));
 
 // validation
-require_once("model/info-validation.php");
+require_once("model/signup-validation.php");
 
 // define a default route
-$f3->route('GET /', function() {
-    $view = new View();
-    echo $view->render('views/home.html');
+$f3->route('GET /', function($f3) {
+    $f3->set("title", "My Dating Website");
+    $template = new Template();
+    echo $template->render('views/home.html');
 });
 
 // define a route to sign up (personal info)
 $f3->route('GET|POST /sign-up/info', function($f3) {
     session_start();
+
+    $f3->set("title", "Personal Info - Sign Up");
 
     // always start with empty session here
     $_SESSION = array();
@@ -69,18 +75,7 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
             if (validAge($age)) {
                 $_SESSION['age'] = $age;
             } else {
-                $f3->set("errors['age']", "Please enter your age");
-                $isValid = false;
-            }
-        }
-
-        // validate gender
-        if (isset($_POST['gender'])) {
-            $gender = $_POST['gender'];
-            if (validGender($gender)) {
-                $_SESSION['gender'] = $gender;
-            } else {
-                $f3->set("errors['gender']", "Please select a gender");
+                $f3->set("errors['age']", "Please enter your age (Must be 18 or older)");
                 $isValid = false;
             }
         }
@@ -99,8 +94,6 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
         if ($isValid) {
             $f3->reroute("/sign-up/profile");
         }
-
-        print_r($_POST);
     }
 
     $template = new Template();
@@ -108,8 +101,27 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
 });
 
 // define a route to sign up (profile)
-$f3->route('GET|POST /sign-up/profile', function() {
+$f3->route('GET|POST /sign-up/profile', function($f3) {
     session_start();
+
+    $isValid = true;
+
+    // validate that the email was not left empty
+    if (!empty($_POST)) {
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+            if (!empty($email)) {
+                $_SESSION['email'] = $email;
+            } else {
+                $f3->set("errors['email']", "Please enter your email address");
+                $isValid = false;
+            }
+        }
+
+        if ($isValid) {
+            $f3->reroute("/sign-up/interests");
+        }
+    }
 
     $template = new Template();
     echo $template->render('views/profile.html');
@@ -117,12 +129,28 @@ $f3->route('GET|POST /sign-up/profile', function() {
 
 // define a route to sign up (interests)
 $f3->route('GET /sign-up/interests', function() {
+    session_start();
+
+    if (isset($_POST['submit'])) {
+        // check if checkboxes are checked
+
+        // if valid
+
+            // go to next
+
+        // else
+
+            // stay on page
+    }
+
     $template = new Template();
     echo $template->render('views/interests.html');
 });
 
 // define a route to sign up (summary)
 $f3->route('GET /sign-up/summary', function() {
+    session_start();
+
     $template = new Template();
     echo $template->render('views/summary.html');
 });
