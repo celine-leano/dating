@@ -18,7 +18,7 @@ Profile Summary
     </div>
 
     <div class="row justify-content-lg-center">
-        <div class="col-lg-10 justify-content-lg-center">
+        <div class="col-lg-12 justify-content-lg-center">
             <div class="col-lg-6">
                 <ul class="ul list-group">
                     <li class="list-group-item">Name: {{ @SESSION['fname'] }} {{ @SESSION['lname'] }}</li>
@@ -32,10 +32,11 @@ Profile Summary
                 </ul>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 text-center">
+                <img src="../images/default.jpg" alt="Default Profile Picture">
                 <h3>Biography</h3>
                 <p class="text-center">
-                    - Insert Biography -
+                    {{ @SESSION['bio'] }}
                 </p>
             </div>
         </div>

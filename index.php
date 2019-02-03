@@ -205,6 +205,8 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
 $f3->route('GET /sign-up/summary', function($f3) {
     session_start();
 
+    $f3->set("title", "User Summary");
+
     $f3->set("indoorString", implode(" ", $_SESSION['indoor']));
     $f3->set("outdoorString", implode(" ", $_SESSION['outdoor']));
 
