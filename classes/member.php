@@ -1,9 +1,8 @@
 <?php
-/*
- * Celine Leano
- * 2/16/2019
- * 328/dating/classes/member.php
- * Member class
+/**
+ * Member class that stores an object with fields adjacent to
+ * the sign-up form
+ * @author Celine Leano
  */
 
 class Member
@@ -36,7 +35,8 @@ class Member
     }
 
     /**
-     * @return First
+     * Returns first name
+     * @return mixed $fname
      */
     public function getFname()
     {
@@ -44,7 +44,8 @@ class Member
     }
 
     /**
-     * @param First $fname
+     * Sets first name
+     * @param mixed $fname
      */
     public function setFname($fname)
     {
@@ -52,7 +53,8 @@ class Member
     }
 
     /**
-     * @return Last
+     * Returns last name
+     * @return mixed $lname
      */
     public function getLname()
     {
@@ -60,7 +62,8 @@ class Member
     }
 
     /**
-     * @param Last $lname
+     * Sets last name
+     * @param $lname
      */
     public function setLname($lname)
     {
@@ -68,7 +71,8 @@ class Member
     }
 
     /**
-     * @return Age
+     * Returns age
+     * @return mixed $age
      */
     public function getAge()
     {
@@ -76,7 +80,8 @@ class Member
     }
 
     /**
-     * @param Age $age
+     * Sets age
+     * @param $age
      */
     public function setAge($age)
     {
@@ -84,7 +89,8 @@ class Member
     }
 
     /**
-     * @return Gender
+     * Returns gender
+     * @return mixed $gender
      */
     public function getGender()
     {
@@ -92,7 +98,8 @@ class Member
     }
 
     /**
-     * @param Gender $gender
+     * Sets gender
+     * @param $gender
      */
     public function setGender($gender)
     {
@@ -100,7 +107,8 @@ class Member
     }
 
     /**
-     * @return Phone
+     * Returns phone number
+     * @return mixed $phone
      */
     public function getPhone()
     {
@@ -108,7 +116,8 @@ class Member
     }
 
     /**
-     * @param Phone $phone
+     * Sets phone number
+     * @param $phone
      */
     public function setPhone($phone)
     {
@@ -116,7 +125,8 @@ class Member
     }
 
     /**
-     * @return mixed
+     * Returns email address
+     * @return mixed $email
      */
     public function getEmail()
     {
@@ -124,6 +134,7 @@ class Member
     }
 
     /**
+     * Sets email address
      * @param mixed $email
      */
     public function setEmail($email)
@@ -132,7 +143,8 @@ class Member
     }
 
     /**
-     * @return mixed
+     * Returns state
+     * @return mixed $state
      */
     public function getState()
     {
@@ -140,6 +152,7 @@ class Member
     }
 
     /**
+     * Sets state
      * @param mixed $state
      */
     public function setState($state)
@@ -148,7 +161,8 @@ class Member
     }
 
     /**
-     * @return mixed
+     * Returns seeking
+     * @return mixed $seeking
      */
     public function getSeeking()
     {
@@ -156,6 +170,7 @@ class Member
     }
 
     /**
+     * Sets seeking
      * @param mixed $seeking
      */
     public function setSeeking($seeking)
@@ -164,7 +179,8 @@ class Member
     }
 
     /**
-     * @return mixed
+     * Returns biography
+     * @return mixed $bio
      */
     public function getBio()
     {
@@ -172,10 +188,12 @@ class Member
     }
 
     /**
+     * Sets biography
      * @param mixed $bio
      */
     public function setBio($bio)
     {
         $this->_bio = $bio;
     }
+
 }

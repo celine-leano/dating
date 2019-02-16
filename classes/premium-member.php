@@ -1,9 +1,7 @@
 <?php
-/*
- * Celine Leano
- * 2/16/2019
- * 328/dating/classes/premium-member.php
- * Premium member class
+/**
+ * PremiumMember class that has access to interest fields
+ * @author Celine Leano
  */
 
 class PremiumMember extends Member
@@ -11,12 +9,21 @@ class PremiumMember extends Member
     private $_indoorInterests;
     private $_outdoorInterests;
 
+    /**
+     * PremiumMember constructor.
+     * @param $fname
+     * @param $lname
+     * @param $age
+     * @param $gender
+     * @param $phone
+     */
     function __construct($fname, $lname, $age, $gender, $phone)
     {
         parent::__construct($fname, $lname, $age, $gender, $phone);
     }
 
     /**
+     * Returns indoor interests
      * @return mixed
      */
     public function getIndoorInterests()
@@ -25,6 +32,7 @@ class PremiumMember extends Member
     }
 
     /**
+     * Sets indoor interests
      * @param mixed $indoorInterests
      */
     public function setIndoorInterests($indoorInterests)
@@ -33,6 +41,7 @@ class PremiumMember extends Member
     }
 
     /**
+     * Returns outdoor interests
      * @return mixed
      */
     public function getOutdoorInterests()
@@ -41,6 +50,7 @@ class PremiumMember extends Member
     }
 
     /**
+     * Sets outdoor interests
      * @param mixed $outdoorInterests
      */
     public function setOutdoorInterests($outdoorInterests)
