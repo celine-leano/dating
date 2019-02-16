@@ -20,28 +20,29 @@ Profile Summary
     <div class="row center">
         <div class="col-lg-6">
             <ul class="ul list-group">
-                <li class="list-group-item">Name: {{ @SESSION['fname'] }} {{ @SESSION['lname'] }}</li>
-                <li class="list-group-item">Gender: {{ @SESSION['gender'] }}</li>
-                <li class="list-group-item">Age: {{ @SESSION['age'] }}</li>
-                <li class="list-group-item">Phone: {{ @SESSION['phone'] }}</li>
-                <li class="list-group-item">Email: {{ @SESSION['email'] }}</li>
-                <li class="list-group-item">State: {{ @SESSION['state'] }}</li>
-                <li class="list-group-item">Seeking: {{ @SESSION['seeking'] }}</li>
-                <li class="list-group-item">Interests: {{ @indoorString }} {{ @outdoorString }}</li>
+                <li class="list-group-item">Name: {{ @fname }} {{ @lname }}</li>
+                <li class="list-group-item">Gender: {{ @gender }}</li>
+                <li class="list-group-item">Age: {{ @age }}</li>
+                <li class="list-group-item">Phone: {{ @phone }}</li>
+                <li class="list-group-item">Email: {{ @email }}</li>
+                <li class="list-group-item">State: {{ @state }}</li>
+                <li class="list-group-item">Seeking: {{ @seeking }}</li>
+                <li class="list-group-item">Interests: {{ @indoor }} {{ @outdoor }}</li>
             </ul>
         </div>
 
-        <div class="col-lg-6 text-lg-center">
+        <div class="col-lg-6">
             <img src="../images/default.jpg" alt="Default Profile Picture" class="rounded">
-            <h4 class="text-center mt-2">Biography</h4>
+
+            <h4 class="mt-2">Biography</h4>
             <p class="text-center">
-                {{ @SESSION['bio'] }}
+                {{ @bio }}
             </p>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-12 text-lg-center">
+        <div class="col-lg-12 text-lg-center m-3">
             <a href="#" class="btn btn-primary btn-md">Contact Me!</a>
         </div>
     </div>

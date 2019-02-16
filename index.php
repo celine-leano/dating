@@ -208,8 +208,8 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
                     $f3->reroute("home");
                 }
             }
-
-            $memberType->setIndoorInterests($_SESSION['indoor']);
+            $f3->set("indoorString", implode(" ", $_SESSION['indoor']));
+            $memberType->setIndoorInterests($f3->get("indoorString"));
         }
 
         if (!empty($_POST['outdoorInterests'])) {
@@ -223,8 +223,8 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
                     $f3->reroute("home");
                 }
             }
-
-            $memberType->setOutdoorInterests($_SESSION['outdoor']);
+            $f3->set("outdoorString", implode(" ", $_SESSION['outdoor']));
+            $memberType->setOutdoorInterests($f3->get("outdoorString"));
         }
         $_SESSION['memberType'] = $memberType;
         $f3->reroute("summary");
@@ -239,13 +239,21 @@ $f3->route('GET /sign-up/summary', function($f3) {
 
     $f3->set("title", "User Summary");
 
-    if (isset($_SESSION['indoor'])) {
-        $f3->set("indoorString", implode(" ", $_SESSION['indoor']));
-    }
+    // retrieve member object
+    $memberType = $_SESSION['memberType'];
 
-    if (isset($_SESSION['outdoor'])) {
-        $f3->set("outdoorString", implode(" ", $_SESSION['outdoor']));
-    }
+    // get fields from object and set variables
+    $f3->set("fname", $memberType->getFname());
+    $f3->set("lname", $memberType->getLname());
+    $f3->set("gender", $memberType->getGender());
+    $f3->set("age", $memberType->getAge());
+    $f3->set("phone", $memberType->getPhone());
+    $f3->set("email", $memberType->getEmail());
+    $f3->set("state", $memberType->getState());
+    $f3->set("seeking", $memberType->getSeeking());
+    $f3->set("indoor", $memberType->getIndoorInterests());
+    $f3->set("outdoor", $memberType->getOutdoorInterests());
+    $f3->set("bio", $memberType->getBio());
 
     $template = new Template();
     echo $template->render('views/summary.html');
