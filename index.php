@@ -208,6 +208,8 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
                     $f3->reroute("home");
                 }
             }
+
+            $memberType->setIndoorInterests($_SESSION['indoor']);
         }
 
         if (!empty($_POST['outdoorInterests'])) {
@@ -221,7 +223,10 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
                     $f3->reroute("home");
                 }
             }
+
+            $memberType->setOutdoorInterests($_SESSION['outdoor']);
         }
+        $_SESSION['memberType'] = $memberType;
         $f3->reroute("summary");
     }
 
