@@ -12,6 +12,8 @@ error_reporting(E_ALL);
 // require autoload
 require_once('vendor/autoload.php');
 
+session_start();
+
 // create an instance of the Base class
 $f3 = Base::instance();
 
@@ -38,7 +40,6 @@ $f3->route('GET /', function($f3) {
 
 // define a route to sign up (personal info)
 $f3->route('GET|POST /sign-up/info', function($f3) {
-    session_start();
 
     $f3->set("title", "Personal Info - Sign Up");
 
@@ -84,7 +85,8 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
 
         // saves gender if set
         if (isset($_POST['gender'])) {
-            $_SESSION['gender'] = $_POST['gender'];
+            $gender = $_POST['gender'];
+            $_SESSION['gender'] = $gender;
         }
 
         // validate phone number
@@ -99,6 +101,17 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
         }
 
         if ($isValid) {
+
+            // check if premium is set
+            if (isset($_POST['premium'])) {
+                // instantiate a PremiumMember obj
+                $premium = new PremiumMember($fname, $lname, $age, $gender, $phone);
+                $_SESSION['memberType'] = $premium;
+            } else {
+                // instantiate a Member obj
+                $member = new Member($fname, $lname, $age, $gender, $phone);
+                $_SESSION['memberType'] = $member;
+            }
             $f3->reroute("/sign-up/profile");
         }
     }
@@ -109,7 +122,6 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
 
 // define a route to sign up (profile)
 $f3->route('GET|POST /sign-up/profile', function($f3) {
-    session_start();
 
     $f3->set("title", "Profile - Sign Up");
 
@@ -162,7 +174,6 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
 
 // define a route to sign up (interests)
 $f3->route('GET|POST /sign-up/interests', function($f3) {
-    session_start();
 
     $f3->set("title", "Summary - Sign Up");
 
@@ -203,7 +214,6 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
 
 // define a route to sign up (summary)
 $f3->route('GET /sign-up/summary', function($f3) {
-    session_start();
 
     $f3->set("title", "User Summary");
 
