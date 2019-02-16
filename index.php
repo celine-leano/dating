@@ -172,7 +172,13 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
 
         if ($isValid) {
             $_SESSION['memberType'] = $memberType;
-            $f3->reroute("/sign-up/interests");
+
+            // if premium, go to interests
+            if (get_class($memberType) == "PremiumMember") {
+                $f3->reroute("/sign-up/interests");
+            } else {
+                $f3->reroute("/sign-up/summary");
+            }
         }
     }
 
@@ -184,6 +190,9 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
 $f3->route('GET|POST /sign-up/interests', function($f3) {
 
     $f3->set("title", "Summary - Sign Up");
+
+    // retrieve member object from session
+    $memberType = $_SESSION['memberType'];
 
     if (isset($_POST['submit'])) {
         // check if checkboxes are checked
