@@ -127,12 +127,16 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
 
     $isValid = true;
 
+    // retrieve member object from session
+    $memberType = $_SESSION['memberType'];
+
     // validate that the email was not left empty
     if (!empty($_POST)) {
         if (isset($_POST['email'])) {
             $email = $_POST['email'];
             if (!empty($email)) {
                 $_SESSION['email'] = $email;
+                $memberType->setEmail($email);
             } else {
                 $f3->set("errors['email']", "Please enter your email address");
                 $isValid = false;
@@ -143,6 +147,7 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
             $state = $_POST['state'];
             if ($state != "- Select -") {
                 $_SESSION['state'] = $state;
+                $memberType->setState($state);
             } else {
                 $f3->set("errors['state']", "Please select a state");
                 $isValid = false;
@@ -153,6 +158,7 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
             $seeking = $_POST['seeking'];
             if (!empty($seeking)) {
                 $_SESSION['seeking'] = $seeking;
+                $memberType->setSeeking($seeking);
             }
         }
 
@@ -160,10 +166,12 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
             $bio = $_POST['bio'];
             if (!empty($bio)) {
                 $_SESSION['bio'] = $bio;
+                $memberType->setBio($bio);
             }
         }
 
         if ($isValid) {
+            $_SESSION['memberType'] = $memberType;
             $f3->reroute("/sign-up/interests");
         }
     }
