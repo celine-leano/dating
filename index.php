@@ -251,9 +251,14 @@ $f3->route('GET /sign-up/summary', function($f3) {
     $f3->set("email", $memberType->getEmail());
     $f3->set("state", $memberType->getState());
     $f3->set("seeking", $memberType->getSeeking());
-    $f3->set("indoor", $memberType->getIndoorInterests());
-    $f3->set("outdoor", $memberType->getOutdoorInterests());
     $f3->set("bio", $memberType->getBio());
+
+    // for premium members
+    if (get_class($memberType) == "PremiumMember") {
+        $f3->set("premium", true);
+        $f3->set("indoor", $memberType->getIndoorInterests());
+        $f3->set("outdoor", $memberType->getOutdoorInterests());
+    }
 
     $template = new Template();
     echo $template->render('views/summary.html');

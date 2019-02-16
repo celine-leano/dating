@@ -27,7 +27,9 @@ Profile Summary
                 <li class="list-group-item">Email: {{ @email }}</li>
                 <li class="list-group-item">State: {{ @state }}</li>
                 <li class="list-group-item">Seeking: {{ @seeking }}</li>
-                <li class="list-group-item">Interests: {{ @indoor }} {{ @outdoor }}</li>
+                <check if="{{ @premium == true }}">
+                    <li class="list-group-item">Interests: {{ @indoor }} {{ @outdoor }}</li>
+                </check>
             </ul>
         </div>
 
