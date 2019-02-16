@@ -9,7 +9,7 @@ Profile Summary
 
 <include href="views/navbar.html"></include>
 
-<div class="container">
+<div class="container mx-auto my-3 p-4 border rounded">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="text-left">Summary</h1>
@@ -17,33 +17,33 @@ Profile Summary
         </div>
     </div>
 
-    <div class="row justify-content-lg-center">
-        <div class="col-lg-12 justify-content-lg-center">
-            <div class="col-lg-6">
-                <ul class="ul list-group">
-                    <li class="list-group-item">Name: {{ @SESSION['fname'] }} {{ @SESSION['lname'] }}</li>
-                    <li class="list-group-item">Gender: {{ @SESSION['gender'] }}</li>
-                    <li class="list-group-item">Age: {{ @SESSION['age'] }}</li>
-                    <li class="list-group-item">Phone: {{ @SESSION['phone'] }}</li>
-                    <li class="list-group-item">Email: {{ @SESSION['email'] }}</li>
-                    <li class="list-group-item">State: {{ @SESSION['state'] }}</li>
-                    <li class="list-group-item">Seeking: {{ @SESSION['seeking'] }}</li>
-                    <li class="list-group-item">Interests: {{ @indoorString }} {{ @outdoorString }}</li>
-                </ul>
-            </div>
+    <div class="row center">
+        <div class="col-lg-6">
+            <ul class="ul list-group">
+                <li class="list-group-item">Name: {{ @SESSION['fname'] }} {{ @SESSION['lname'] }}</li>
+                <li class="list-group-item">Gender: {{ @SESSION['gender'] }}</li>
+                <li class="list-group-item">Age: {{ @SESSION['age'] }}</li>
+                <li class="list-group-item">Phone: {{ @SESSION['phone'] }}</li>
+                <li class="list-group-item">Email: {{ @SESSION['email'] }}</li>
+                <li class="list-group-item">State: {{ @SESSION['state'] }}</li>
+                <li class="list-group-item">Seeking: {{ @SESSION['seeking'] }}</li>
+                <li class="list-group-item">Interests: {{ @indoorString }} {{ @outdoorString }}</li>
+            </ul>
+        </div>
 
-            <div class="col-lg-6 text-center">
-                <img src="../images/default.jpg" alt="Default Profile Picture">
-                <h3>Biography</h3>
-                <p class="text-center">
-                    {{ @SESSION['bio'] }}
-                </p>
-            </div>
+        <div class="col-lg-6 text-lg-center">
+            <img src="../images/default.jpg" alt="Default Profile Picture" class="rounded">
+            <h4 class="text-center mt-2">Biography</h4>
+            <p class="text-center">
+                {{ @SESSION['bio'] }}
+            </p>
         </div>
     </div>
 
-    <div class="row text-center">
-        <a href="#" class="btn btn-primary btn-md">Contact Me!</a>
+    <div class="row">
+        <div class="col-lg-12 text-lg-center">
+            <a href="#" class="btn btn-primary btn-md">Contact Me!</a>
+        </div>
     </div>
 </div>
 </body>

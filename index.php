@@ -166,7 +166,7 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
 
     $f3->set("title", "Summary - Sign Up");
 
-    if (!empty($_POST)) {
+    if (isset($_POST['submit'])) {
         // check if checkboxes are checked
         if (!empty($_POST['indoorInterests'])) {
             // check if valid
@@ -207,8 +207,13 @@ $f3->route('GET /sign-up/summary', function($f3) {
 
     $f3->set("title", "User Summary");
 
-    $f3->set("indoorString", implode(" ", $_SESSION['indoor']));
-    $f3->set("outdoorString", implode(" ", $_SESSION['outdoor']));
+    if (isset($_SESSION['indoor'])) {
+        $f3->set("indoorString", implode(" ", $_SESSION['indoor']));
+    }
+
+    if (isset($_SESSION['outdoor'])) {
+        $f3->set("outdoorString", implode(" ", $_SESSION['outdoor']));
+    }
 
     $template = new Template();
     echo $template->render('views/summary.html');

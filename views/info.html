@@ -9,84 +9,95 @@ Sign-Up (Personal Info)
 
 <include href="views/navbar.html"></include>
 
-<div class="container">
+<div class="container mx-auto my-3 p-4 border rounded">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="text-left">Personal Information</h1>
+            <h2 class="text-left">Personal Information</h2>
             <hr>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="col-md-12">
-                <form method="post" action="#">
+    <form method="post" action="#">
+        <div class="row">
+            <div class="col-lg-8">
 
-                    <div class="form-group row">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" name="fname" value="{{ @POST['fname'] }}">
-                        <!-- validation error message -->
-                        <check if="{{ isset(@errors['fname']) }}">
-                            <span>{{ @errors['fname'] }}</span>
+                <div class="form-group">
+                    <label class="font-weight-bold">First Name</label>
+                    <input type="text" class="form-control" name="fname" value="{{ @POST['fname'] }}">
+                    <!-- validation error message -->
+                    <check if="{{ isset(@errors['fname']) }}">
+                        <span>{{ @errors['fname'] }}</span>
+                    </check>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold">Last Name</label>
+                    <input type="text" class="form-control" name="lname" value="{{ @POST['lname'] }}">
+
+                    <!-- validation error message -->
+                    <check if="{{ isset(@errors['lname']) }}">
+                        <span>{{ @errors['lname'] }}</span>
+                    </check>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold">Age</label>
+                    <input type="number" maxlength=3 class="form-control" name="age" value="{{ @POST['age'] }}">
+
+                    <!-- validation error message -->
+                    <check if="{{ isset(@errors['age']) }}">
+                        <span>{{ @errors['age'] }}</span>
+                    </check>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold">Gender</label><br>
+                    <label class="radio-inline">
+                        <check if="{{ @POST['gender'] == 'Male' }}">
+                            <true><input type="radio" name="gender" value="Male" checked>&nbsp;Male</true>
+                            <false><input type="radio" name="gender" value="Male">&nbsp;Male</false>
                         </check>
-                    </div>
-
-                    <div class="form-group row">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" name="lname" value="{{ @POST['lname'] }}">
-
-                        <!-- validation error message -->
-                        <check if="{{ isset(@errors['lname']) }}">
-                            <span>{{ @errors['lname'] }}</span>
+                    </label>
+                    <label class="radio-inline">
+                        <check if="{{ @POST['gender'] == 'Female' }}">
+                            <true><input type="radio" name="gender" value="Female" checked>&nbsp;Female</true>
+                            <false><input type="radio" name="gender" value="Female">&nbsp;Female</false>
                         </check>
-                    </div>
+                    </label>
+                </div>
 
-                    <div class="form-group row">
-                        <label>Age</label>
-                        <input type="number" maxlength=3 class="form-control" name="age" value="{{ @POST['age'] }}">
+                <div class="form-group">
+                    <label class="font-weight-bold">Phone Number</label>
+                    <input type="tel" class="form-control" name="phone" value="{{ @POST['phone'] }}">
 
-                        <!-- validation error message -->
-                        <check if="{{ isset(@errors['age']) }}">
-                            <span>{{ @errors['age'] }}</span>
-                        </check>
-                    </div>
+                    <!-- validation error message -->
+                    <check if="{{ isset(@errors['phone']) }}">
+                        <span>{{ @errors['phone'] }}</span>
+                    </check>
+                </div>
 
-                    <div class="form-group row">
-                        <label>Gender</label><br>
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value="Male">Male
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="gender" value="Female">Female
-                        </label>
-                    </div>
-
-                    <div class="form-group row">
-                        <label>Phone Number</label>
-                        <input type="tel" class="form-control" name="phone" value="{{ @POST['phone'] }}">
-
-                        <!-- validation error message -->
-                        <check if="{{ isset(@errors['phone']) }}">
-                            <span>{{ @errors['phone'] }}</span>
-                        </check>
-                    </div>
-
-                    <div class="row text-right">
-                        <button type="submit" class="btn btn-primary btn-md">Next ></button>
-                    </div>
-                </form>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="premium" name="premium">
+                    <label class="form-check-label" for="premium">Sign me up for a Premium account!</label>
+                </div>
             </div>
-        </div>
 
-        <div class="col-lg-4">
-            <div class="col-md-12">
-                <div class="card bg-light">
+            <div class="col-lg-4">
+                <div class="card-body bg-light border rounded mt-4 p-3 text-center">
                     <b>Note:</b> All information is protected by our <a href="#">privacy policy</a>.
                     Profile information can only be viewed by others with your permission.
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <button type="submit" name="submit" class="float-right btn btn-primary btn-md">Next ></button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>
