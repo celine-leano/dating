@@ -59,3 +59,14 @@ function getMember($memberId)
     $result = $statement->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function getMembers()
+{
+    global $dbh;
+
+    $sql = "SELECT * FROM members";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
