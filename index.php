@@ -93,6 +93,10 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
         if (isset($_POST['phone'])) {
             $phone = $_POST['phone'];
             if (validPhone($phone)) {
+                $phone = str_replace("(", "", $phone);
+                $phone = str_replace(")", "", $phone);
+                $phone = str_replace("-", "", $phone);
+                $phone = str_replace(" ", "", $phone);
                 $_SESSION['phone'] = $phone;
             } else {
                 $f3->set("errors['phone']", "Please enter full 10-digit number");
