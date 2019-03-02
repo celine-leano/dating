@@ -11,8 +11,15 @@ error_reporting(E_ALL);
 
 // require autoload
 require_once('vendor/autoload.php');
-
 session_start();
+
+//Connect to DB
+require 'model/database.php';
+$dbh = connect();
+if (!$dbh) //don't go any further if we can't connect to the database
+{
+    exit;
+}
 
 // create an instance of the Base class
 $f3 = Base::instance();
@@ -32,14 +39,14 @@ $f3->set("outdoor", array("hiking", "biking", "swimming", "collecting",
 require_once("model/signup-validation.php");
 
 // define a default route
-$f3->route('GET /', function($f3) {
+$f3->route('GET /', function ($f3) {
     $f3->set("title", "My Dating Website");
     $template = new Template();
     echo $template->render('views/home.html');
 });
 
 // define a route to sign up (personal info)
-$f3->route('GET|POST /sign-up/info', function($f3) {
+$f3->route('GET|POST /sign-up/info', function ($f3) {
 
     $f3->set("title", "Personal Info - Sign Up");
 
@@ -125,7 +132,7 @@ $f3->route('GET|POST /sign-up/info', function($f3) {
 });
 
 // define a route to sign up (profile)
-$f3->route('GET|POST /sign-up/profile', function($f3) {
+$f3->route('GET|POST /sign-up/profile', function ($f3) {
 
     $f3->set("title", "Profile - Sign Up");
 
@@ -191,7 +198,7 @@ $f3->route('GET|POST /sign-up/profile', function($f3) {
 });
 
 // define a route to sign up (interests)
-$f3->route('GET|POST /sign-up/interests', function($f3) {
+$f3->route('GET|POST /sign-up/interests', function ($f3) {
 
     $f3->set("title", "Summary - Sign Up");
 
@@ -239,7 +246,7 @@ $f3->route('GET|POST /sign-up/interests', function($f3) {
 });
 
 // define a route to sign up (summary)
-$f3->route('GET /sign-up/summary', function($f3) {
+$f3->route('GET /sign-up/summary', function ($f3) {
 
     $f3->set("title", "User Summary");
 
@@ -256,6 +263,7 @@ $f3->route('GET /sign-up/summary', function($f3) {
     $f3->set("state", $memberType->getState());
     $f3->set("seeking", $memberType->getSeeking());
     $f3->set("bio", $memberType->getBio());
+    $f3->set("image", null);
 
     // for premium members
     if (get_class($memberType) == "PremiumMember") {
@@ -263,6 +271,15 @@ $f3->route('GET /sign-up/summary', function($f3) {
         $f3->set("indoor", $memberType->getIndoorInterests());
         $f3->set("outdoor", $memberType->getOutdoorInterests());
     }
+
+    // combine interests
+    $interests = $f3->get("indoor") . " " . $f3->get("outdoor");
+
+    // adds member to the database
+    insertMember($f3->get("fname"), $f3->get("lname"), $f3->get("age"),
+        $f3->get("gender"), $f3->get("phone"), $f3->get("email"), $f3->get("state"),
+        $f3->get("seeking"), $f3->get("bio"), $f3->get("premium"),
+        $f3->get("image"), $interests);
 
     $template = new Template();
     echo $template->render('views/summary.html');
