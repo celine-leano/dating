@@ -308,5 +308,15 @@ $f3->route("GET|POST /admin", function ($f3) {
     echo $template->render('views/admin.html');
 });
 
+// route to view profiles based on member id
+$f3->route("GET|POST /summary/@memberid", function($f3, $params) {
+    $id = $params['memberid'];
+    $member = getMember($id);
+    $f3->set("member", $member);
+
+    $template = new Template();
+    echo $template->render('views/view-summary.html');
+});
+
 // run fat free
 $f3->run();

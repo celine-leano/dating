@@ -1,0 +1,53 @@
+<!--
+Celine Leano
+1/29/2019
+328/dating/views/summary.html
+Profile Summary
+-->
+<include href="views/head.html"></include>
+<body>
+
+<include href="views/navbar.html"></include>
+
+<div class="container mx-auto my-3 p-4 border rounded">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-left">Summary</h1>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row center">
+        <div class="col-lg-6">
+            <ul class="ul list-group">
+                <li class="list-group-item">Name: {{ @member['fname'] }} {{ @member['lname'] }}</li>
+                <li class="list-group-item">Gender: {{ @member['gender'] }}</li>
+                <li class="list-group-item">Age: {{ @member['age'] }}</li>
+                <li class="list-group-item">Phone: {{ @member['phone'] }}</li>
+                <li class="list-group-item">Email: {{ @member['email'] }}</li>
+                <li class="list-group-item">State: {{ @member['state'] }}</li>
+                <li class="list-group-item">Seeking: {{ @member['seeking'] }}</li>
+                <check if="{{ @member['premium'] == true }}">
+                    <li class="list-group-item">Interests: {{ @member['interests'] }}</li>
+                </check>
+            </ul>
+        </div>
+
+        <div class="col-lg-6">
+            <img src="../images/default.jpg" alt="Default Profile Picture" class="rounded">
+
+            <h4 class="mt-2">Biography</h4>
+            <p class="text-center">
+                {{ @member['bio'] }}
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-lg-center m-3">
+            <a href="#" class="btn btn-primary btn-md">Contact Me!</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
