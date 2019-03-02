@@ -270,10 +270,13 @@ $f3->route('GET /sign-up/summary', function ($f3) {
         $f3->set("premium", true);
         $f3->set("indoor", $memberType->getIndoorInterests());
         $f3->set("outdoor", $memberType->getOutdoorInterests());
-    }
 
-    // combine interests
-    $interests = $f3->get("indoor") . " " . $f3->get("outdoor");
+        // combine interests
+        $interests = $f3->get("indoor") . " " . $f3->get("outdoor");
+    } else {
+        $f3->set("premium", false);
+        $interests = null;
+    }
 
     // adds member to the database
     insertMember($f3->get("fname"), $f3->get("lname"), $f3->get("age"),
