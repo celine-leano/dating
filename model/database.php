@@ -83,9 +83,9 @@ function getMembers()
 {
     global $dbh;
 
-    $sql = "SELECT * FROM members";
+    $sql = "SELECT * FROM members ORDER BY lname, fname";
     $statement = $dbh->prepare($sql);
     $statement->execute();
-    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }

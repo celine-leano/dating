@@ -271,8 +271,17 @@ $f3->route('GET /sign-up/summary', function ($f3) {
         $f3->set("indoor", $memberType->getIndoorInterests());
         $f3->set("outdoor", $memberType->getOutdoorInterests());
 
-        // combine interests
-        $interests = $f3->get("indoor") . " " . $f3->get("outdoor");
+        // combine interests if necessary
+        if ($f3->get("indoor") && $f3->get("outdoor") != null) {
+            $interests = $f3->get("indoor") . " " . $f3->get("outdoor");
+        } else if ($f3->get("indoor") != null) {
+            $interests = $f3->get("indoor");
+        } else if ($f3->get("outdoor") != null) {
+            $interests = $f3->get("outdoor");
+        }
+        $interests = str_replace(" ", ", ", $interests);
+
+    // not a member
     } else {
         $f3->set("premium", false);
         $interests = null;
@@ -286,6 +295,17 @@ $f3->route('GET /sign-up/summary', function ($f3) {
 
     $template = new Template();
     echo $template->render('views/summary.html');
+});
+
+// admin page route
+$f3->route("GET|POST /admin", function ($f3) {
+    $f3->set("title", "Admin");
+
+    $members = getMembers();
+    $f3->set("members", $members);
+
+    $template = new Template();
+    echo $template->render('views/admin.html');
 });
 
 // run fat free
