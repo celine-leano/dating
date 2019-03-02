@@ -22,12 +22,13 @@ function connect()
 }
 
 function insertMember($fname, $lname, $age, $gender, $phone, $email, $state,
-                      $seeking)
+                      $seeking, $bio, $premium, $image, $interests)
 {
     global $dbh;
 
     $sql = "INSERT INTO members VALUES(:fname, :lname, :age, :gender, :phone, 
-                                       :email, :state, :seeking)";
+                                       :email, :state, :seeking, :bio, :premium, 
+                                       :image, :interests)";
     $statement = $dbh->prepare($sql);
 
     //bind parameters
@@ -39,6 +40,10 @@ function insertMember($fname, $lname, $age, $gender, $phone, $email, $state,
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':state', $state, PDO::PARAM_STR);
     $statement->bindParam(':seeking', $seeking, PDO::PARAM_STR);
+    $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
+    $statement->bindParam(':premium', $seeking, PDO::PARAM_INT);
+    $statement->bindParam(':image', $seeking, PDO::PARAM_STR);
+    $statement->bindParam(':interests', $seeking, PDO::PARAM_STR);
 
     //execute the statement and return true or false if it was successful
     return $statement->execute();
