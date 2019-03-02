@@ -48,3 +48,14 @@ function insertMember($fname, $lname, $age, $gender, $phone, $email, $state,
     //execute the statement and return true or false if it was successful
     return $statement->execute();
 }
+
+function getMember($memberId)
+{
+    global $dbh;
+
+    $sql = "SELECT * FROM members WHERE member_id = '$memberId'";
+    $statement = $dbh->prepare($sql);
+    $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
